@@ -446,11 +446,11 @@
 
     <!-- === HEADER === -->
     <header class="header">
-        <a href="/index.html" class="header__logo">Srijan Jha</a>
+        <a href="index.html" class="header__logo">Srijan Jha</a>
         <nav class="header__nav">
-            <a href="/projects.html">Projects</a>
-            <a href="/more-than-tech.html">More than Tech</a>
-            <a href="/publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+            <a href="more-than-tech.html">More than Tech</a>
+            <a href="publications.html">Publications</a>
         </nav>
     </header>
 
@@ -501,7 +501,7 @@
         <!-- === FEATURE SECTIONS === -->
         <div class="feature-sections-wrapper">
             <!-- Projects Section -->
-            <a href="/projects.html" class="feature-card" data-aos="fade-up">
+            <a href="projects.html" class="feature-card" data-aos="fade-up">
                 <div class="feature-card__content">
                     <h2 class="feature-card__title">Projects</h2>
                     <p class="feature-card__description">View my technical work and case studies.</p>
@@ -512,7 +512,7 @@
             </a>
 
             <!-- More than Tech Section -->
-            <a href="/more-than-tech.html" class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="more-than-tech.html" class="feature-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature-card__content">
                     <h2 class="feature-card__title">More than Tech</h2>
                     <p class="feature-card__description">Explore my creative pursuits and hobbies.</p>
@@ -523,7 +523,7 @@
             </a>
 
             <!-- Publications Section -->
-            <a href="/publications.html" class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <a href="publications.html" class="feature-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature-card__content">
                     <h2 class="feature-card__title">Publications</h2>
                     <p class="feature-card__description">Read my articles and published work.</p>
@@ -617,10 +617,12 @@
                 const video = card.querySelector('.feature-card__video');
                 if (video) {
                     card.addEventListener('mouseenter', () => {
-                        try {
-                            video.play();
-                        } catch (error) {
-                            console.error("Video play failed:", error);
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                // Auto-play was prevented
+                                console.log("Video play was prevented. This is normal in some browser environments.");
+                            });
                         }
                     });
                     card.addEventListener('mouseleave', () => {
