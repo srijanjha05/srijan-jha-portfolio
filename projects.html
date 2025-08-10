@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Srijan Jha | Projects</title>
+    
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS CSS for scroll animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* === CSS VARIABLES & BASE STYLES === */
+        :root {
+            --bg-color: #101010;
+            --text-color: #e0e0e0;
+            --text-color-dark: #a0a0a0;
+            --gold-gradient: linear-gradient(135deg, #ffd700, #daa520, #f0e68c, #b8860b);
+            --complementary-gradient: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+            --glow-color: rgba(255, 215, 0, 0.5);
+            --font-family: 'Plus Jakarta Sans', sans-serif;
+            --border-radius: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            overflow-x: hidden;
+        }
+
+        /* === VIDEO BACKGROUND STYLES === */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* === HEADER STYLES === */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            z-index: 100;
+            background: rgba(16, 16, 16, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .header__logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--complementary-gradient);
+            padding: 0.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header__nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .header__nav a:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color);
+            color: #fff;
+        }
+        
+        /* === STYLES FOR SUB-PAGES === */
+        .page-hero {
+            padding: 8rem 5% 4rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-color-dark);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .project-card__overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            z-index: 2;
+        }
+
+        .project-card__title-initial {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #fff;
+            z-index: 3;
+        }
+        
+        .project-card__hover-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 4;
+            text-align: center;
+        }
+
+        .project-card:hover .project-card__hover-content {
+            opacity: 1;
+        }
+
+        .project-card__description {
+            color: #1a1a1a;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+
+        /* === FOOTER STYLES === */
+        .footer {
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer__content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            background: var(--complementary-gradient);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer__title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer__socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-color-dark);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--text-color);
+            transform: scale(1.2);
+        }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer__details a {
+            color: var(--text-color-dark);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer__details a:hover {
+            color: var(--text-color);
+        }
+
+        .footer__glow-orb {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--glow-color);
+            border-radius: 50%;
+            filter: blur(100px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: footer-orb-pulse 8s infinite ease-in-out;
+        }
+
+        @keyframes footer-orb-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-55%, -45%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+        }
+
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 900px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .page-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === VIDEO BACKGROUND === -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="/video.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- === HEADER === -->
+    <header class="header">
+        <a href="/index.html" class="header__logo">Srijan Jha</a>
+        <nav class="header__nav">
+            <a href="/projects.html">Projects</a>
+            <a href="/more-than-tech.html">More than Tech</a>
+            <a href="/publications.html">Publications</a>
+        </nav>
+    </header>
+
+    <!-- === MAIN CONTENT === -->
+    <main class="main-content">
+        <section class="page-hero">
+            <h1 class="page-title" data-aos="fade-down">My Projects</h1>
+            <p class="page-subtitle" data-aos="fade-down" data-aos-delay="100">A showcase of my technical work and case studies.</p>
+        </section>
+
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up">
+                <img src="/kernel.jpg" alt="KERNEL_MACOS Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">KERNEL_MACOS</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A macOS process-tree visualization tool written in C. It programmatically spawns a multi-level process hierarchy while allocating memory and using the vmmap tool to display each process’s memory map, offering insight into memory usage and process relationships.</p>
+                </div>
+            </a>
+            <!-- Project 2 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="/voice.jpg" alt="nextgen-ai Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">nextgen-ai</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A fun chatbot experiment in Python. It turns text and voice inputs into dynamic conversations by emulating your speech — matching both voice and conversational style — creating a personalized virtual companion experience.</p>
+                </div>
+            </a>
+            <!-- Project 3 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up">
+                <img src="/tcp.jpg" alt="Python_Chat Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">Python_Chat</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A desktop chat application built with Python. It combines a multithreaded socket-based server with a Tkinter GUI client to allow real-time, local network messaging. A great demonstration of networking, concurrency, and GUI design.</p>
+                </div>
+            </a>
+            <!-- Project 4 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="/wc.jpg" alt="WEB-CHATBOT Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">WEB-CHATBOT</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A simple, web-based chatbot developed using Python and Flask. It features a lightweight backend for response logic and a frontend that handles user interaction via the browser.</p>
+                </div>
+            </a>
+            <!-- Project 5 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up">
+                <img src="/snake.jpg" alt="Snake Eating Game Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">Snake Eating Game</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A classic Snake game built using Python and Pygame. Players control the snake with arrow keys to eat food, grow longer, and rack up points—avoiding walls and self-collision. Features smooth movement, collision detection, and real-time score tracking.</p>
+                </div>
+            </a>
+            <!-- Project 6 -->
+            <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="/ttc.jpg" alt="Tic Tac Toe Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">Tic Tac Toe</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">A straightforward Tic Tac Toe game crafted with Python and Tkinter. It lets two players take turns on a 3×3 grid. The interface includes a “Reset Game” button to quickly start over, showcasing GUI-building and desktop app development fundamentals.</p>
+                </div>
+            </a>
+             <!-- Project 7 -->
+            <a href="https://github.com/Vaibhav2824/farmly" target="_blank" rel="noopener noreferrer" class="project-card" data-aos="fade-up">
+                <img src="/farmly.jpg" alt="Farmly Project" class="project-card__image">
+                <div class="project-card__overlay"></div>
+                <h3 class="project-card__title-initial">Farmly</h3>
+                <div class="project-card__hover-content">
+                    <p class="project-card__description">An innovative e-commerce platform built on the MERN stack. Farmly empowers farmers by providing a direct-to-consumer marketplace, eliminating middlemen and fostering a transparent connection between producers and buyers.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer class="footer" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <div class="footer__content">
+            <h3 class="footer__title">Contact Me</h3>
+            <div class="footer__socials">
+                <a href="mailto:srijanjha2005@gmail.com" class="social-link" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/srijan-jha-4bba561a8/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5.14 0-9-4.12-9-9.21C0 4.12 3.86 0 9 0s9 4.12 9 9.21c0 5.09-3.86 9.21-9 9.21zM9.25 2.32c-3.84 0-6.95 3.11-6.95 6.95 0 3.06 1.99 5.66 4.73 6.58.34.06.47-.15.47-.33v-1.16c-1.93.42-2.34-1.1-2.34-1.1-.31-.79-.76-1-1.03-1.21-.22-.15.02-.15.02-.15.58.04 1.04.59 1.04.59.52.88 1.36.62 1.69.47.05-.37.2-.62.36-.76-1.29-.15-2.65-.65-2.65-2.87 0-.63.22-1.15.59-1.55-.06-.15-.26-.73.06-1.53 0 0 .49-.16 1.6 1.2.46-.13.96-.19 1.46-.19.5 0 1 .06 1.46.19 1.11-1.36 1.6-1.2 1.6-1.2.32.8.12 1.38.06 1.53.37.4.59.92.59 1.55 0 2.23-1.36 2.72-2.65 2.87.21.18.39.53.39 1.07v1.58c0 .18.13.39.47.33 2.74-.92 4.73-3.52 4.73-6.58 0-3.84-3.11-6.95-6.95-6.95z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/srijanjha05/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+            </div>
+            <p class="footer__details">
+                <a href="tel:+917899873024">+91 7899873024</a>
+            </p>
+            <div class="footer__glow-orb"></div>
+        </div>
+    </footer>
+
+
+    <!-- === SCRIPT LIBRARIES === -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100,
+        });
+    </script>
+</body>
+</html>
