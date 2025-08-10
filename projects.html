@@ -136,6 +136,14 @@
             max-width: 600px;
             margin: 1rem auto 0;
         }
+        
+        .page-instruction {
+            font-size: 1rem;
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 1rem auto 0;
+            font-weight: 700;
+        }
 
         .project-grid {
             display: grid;
@@ -214,84 +222,6 @@
             line-height: 1.6;
         }
 
-
-        /* === FOOTER STYLES === */
-        .footer {
-            padding: 2rem 5%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer__content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
-            background: var(--complementary-gradient);
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer__title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .footer__socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-link {
-            color: var(--text-color-dark);
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: var(--text-color);
-            transform: scale(1.2);
-        }
-
-        .social-link svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .footer__details a {
-            color: var(--text-color-dark);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer__details a:hover {
-            color: var(--text-color);
-        }
-
-        .footer__glow-orb {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: var(--glow-color);
-            border-radius: 50%;
-            filter: blur(100px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: footer-orb-pulse 8s infinite ease-in-out;
-        }
-
-        @keyframes footer-orb-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-            50% { transform: translate(-55%, -45%) scale(1.2); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-        }
-
-
         /* === RESPONSIVE DESIGN === */
         @media (max-width: 900px) {
             .project-grid {
@@ -323,11 +253,11 @@
 
     <!-- === HEADER === -->
     <header class="header">
-        <a href="/index.html" class="header__logo">Srijan Jha</a>
+        <a href="index.html" class="header__logo">Srijan Jha</a>
         <nav class="header__nav">
-            <a href="/projects.html">Projects</a>
-            <a href="/more-than-tech.html">More than Tech</a>
-            <a href="/publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+            <a href="more-than-tech.html">More than Tech</a>
+            <a href="publications.html">Publications</a>
         </nav>
     </header>
 
@@ -336,6 +266,7 @@
         <section class="page-hero">
             <h1 class="page-title" data-aos="fade-down">My Projects</h1>
             <p class="page-subtitle" data-aos="fade-down" data-aos-delay="100">A showcase of my technical work and case studies.</p>
+            <p class="page-instruction" data-aos="fade-down" data-aos-delay="200">Click on a project to visit its GitHub repository.</p>
         </section>
 
         <div class="project-grid">
@@ -404,32 +335,6 @@
             </a>
         </div>
     </main>
-
-    <!-- === FOOTER === -->
-    <footer class="footer" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-        <div class="footer__content">
-            <h3 class="footer__title">Contact Me</h3>
-            <div class="footer__socials">
-                <a href="mailto:srijanjha2005@gmail.com" class="social-link" aria-label="Email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/srijan-jha-4bba561a8/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-                <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5.14 0-9-4.12-9-9.21C0 4.12 3.86 0 9 0s9 4.12 9 9.21c0 5.09-3.86 9.21-9 9.21zM9.25 2.32c-3.84 0-6.95 3.11-6.95 6.95 0 3.06 1.99 5.66 4.73 6.58.34.06.47-.15.47-.33v-1.16c-1.93.42-2.34-1.1-2.34-1.1-.31-.79-.76-1-1.03-1.21-.22-.15.02-.15.02-.15.58.04 1.04.59 1.04.59.52.88 1.36.62 1.69.47.05-.37.2-.62.36-.76-1.29-.15-2.65-.65-2.65-2.87 0-.63.22-1.15.59-1.55-.06-.15-.26-.73.06-1.53 0 0 .49-.16 1.6 1.2.46-.13.96-.19 1.46-.19.5 0 1 .06 1.46.19 1.11-1.36 1.6-1.2 1.6-1.2.32.8.12 1.38.06 1.53.37.4.59.92.59 1.55 0 2.23-1.36 2.72-2.65 2.87.21.18.39.53.39 1.07v1.58c0 .18.13.39.47.33 2.74-.92 4.73-3.52 4.73-6.58 0-3.84-3.11-6.95-6.95-6.95z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/srijanjha05/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-            </div>
-            <p class="footer__details">
-                <a href="tel:+917899873024">+91 7899873024</a>
-            </p>
-            <div class="footer__glow-orb"></div>
-        </div>
-    </footer>
-
 
     <!-- === SCRIPT LIBRARIES === -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
