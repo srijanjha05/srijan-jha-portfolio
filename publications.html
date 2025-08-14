@@ -123,6 +123,9 @@
             padding: 8rem 5% 4rem;
             max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .publication-card {
@@ -141,13 +144,15 @@
         }
         
         .publication-card__image-wrapper {
-            height: 350px;
+            width: 100%;
+            background-color: #1a1a1a;
         }
 
         .publication-card__image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            object-fit: contain; /* Changed to contain */
         }
 
         .publication-card__text-wrapper {
@@ -222,15 +227,27 @@
     <!-- === MAIN CONTENT === -->
     <main class="main-content">
         <section class="publication-section">
-            <a href="https://www.orfonline.org/expert-speak/india-s-gen-ai-imperative-the-case-for-building-indigenous-ecosystems" target="_blank" rel="noopener noreferrer" class="publication-card" data-aos="fade-up">
+            <div class="publication-card" data-aos="fade-up">
                 <div class="publication-card__image-wrapper">
                     <img src="/tech.jpeg" alt="Abstract technology background" class="publication-card__image">
                 </div>
                 <div class="publication-card__text-wrapper">
                     <h2 class="publication-card__title">India’s Gen-AI Imperative</h2>
                     <p class="publication-card__summary">As an intern at the Observer Research Foundation (ORF)—one of India's premier independent think tanks—I authored this piece for the Centre for Security, Strategy and Technology (CSST). It argues that for India to ensure its digital sovereignty and drive inclusive growth, it must develop its own Generative AI ecosystem. The article highlights how reliance on foreign AI models, which fail to grasp India's diverse culture and languages, leads to low adoption and security risks from geopolitical biases. The piece details the government's IndiaAI Mission to support indigenous LLMs while also noting significant challenges like brain drain and a lack of computing infrastructure. Ultimately, it concludes that by creating accessible, affordable, and relevant AI, India can empower its communities and set a new global standard.</p>
+                    <a href="https://www.orfonline.org/expert-speak/india-s-gen-ai-imperative-the-case-for-building-indigenous-ecosystems" target="_blank" rel="noopener noreferrer" class="action-button">Read Full Article</a>
                 </div>
-            </a>
+            </div>
+
+            <div class="publication-card" data-aos="fade-up">
+                <div class="publication-card__image-wrapper">
+                    <img src="/india.jpg" alt="AI for India" class="publication-card__image">
+                </div>
+                <div class="publication-card__text-wrapper">
+                    <h2 class="publication-card__title">AI for India: Identifying Future Directions</h2>
+                    <p class="publication-card__summary">This research paper, written for the Observer Research Foundation, argues that India must build a sovereign AI ecosystem to overcome the limitations of foreign models, which fail to capture the nation's unique cultural and linguistic diversity. It highlights the security risks of geopolitical bias in current AI and details the IndiaAI Mission's efforts to foster indigenous LLMs. Despite challenges like brain drain and an infrastructure deficit, the paper concludes that by focusing on accessible and relevant AI, India can empower its communities and establish a new global standard for inclusive technology.</p>
+                    <a href="https://www.orfonline.org/research/ai-for-india-identifying-future-directions" target="_blank" rel="noopener noreferrer" class="action-button">Read Full Article</a>
+                </div>
+            </div>
         </section>
     </main>
 
