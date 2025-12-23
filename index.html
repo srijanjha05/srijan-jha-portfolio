@@ -1,634 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Srijan Jha | Portfolio</title>
-    
-    <!-- Google Fonts for a modern look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <!-- AOS CSS for scroll animations -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-    <style>
-        /* === CSS VARIABLES & BASE STYLES === */
-        :root {
-            --bg-color: #101010;
-            --text-color: #e0e0e0;
-            --text-color-dark: #a0a0a0;
-            --gold-gradient: linear-gradient(135deg, #ffd700, #daa520, #f0e68c, #b8860b);
-            --complementary-gradient: linear-gradient(135deg, #3a3a3a, #2a2a2a);
-            --glow-color: rgba(255, 215, 0, 0.5);
-            --font-family: 'Plus Jakarta Sans', sans-serif;
-            --border-radius: 1rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-family);
-            overflow-x: hidden;
-        }
-
-        /* === VIDEO BACKGROUND STYLES === */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        #bg-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        /* === HEADER STYLES === */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            z-index: 100;
-            background: rgba(16, 16, 16, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .header__logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .header__nav {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--complementary-gradient);
-            padding: 0.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .header__nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-weight: 400;
-            transition: all 0.3s ease;
-        }
-
-        .header__nav a:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 15px var(--glow-color), 0 0 30px var(--glow-color);
-            color: #fff;
-        }
-        
-        /* === HERO SECTION STYLES === */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 5% 2rem;
-            position: relative;
-        }
-
-        .hero__wrapper {
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .hero__content-box {
-            background: var(--gold-gradient);
-            padding: 3rem;
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            color: #1a1a1a;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero__photo-wrapper {
-            flex-shrink: 0;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid #fff;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.25);
-        }
-
-        .hero__photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero__text-content {
-            flex-grow: 1;
-            position: relative;
-        }
-
-        .hero__name {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .hero__slider-container {
-            overflow: hidden;
-            position: relative;
-            height: 150px;
-        }
-
-        .hero__slider-track {
-            display: flex;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-        }
-
-        .hero__slide {
-            flex-shrink: 0;
-            width: 100%;
-            padding-right: 2rem;
-        }
-
-        .hero__title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .hero__bio {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .hero__slider-nav {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .slider-arrow {
-            background: rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.2);
-            color: #1a1a1a;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .slider-arrow:hover {
-            background: rgba(0,0,0,0.2);
-            transform: scale(1.1);
-        }
-
-        /* === FEATURE SECTIONS === */
-        .feature-sections-wrapper {
-            display: flex;
-            gap: 2rem;
-            padding: 2rem 5%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            flex: 1;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            background: var(--gold-gradient);
-            border-radius: var(--border-radius);
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-            text-decoration: none;
-            color: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px var(--glow-color);
-        }
-
-        .feature-card__content,
-        .feature-card__video-wrapper {
-            grid-column: 1 / -1;
-            grid-row: 1 / -1;
-            padding: 2.5rem;
-        }
-
-        .feature-card__content {
-            z-index: 2;
-            transition: opacity 0.4s ease;
-        }
-
-        .feature-card:hover .feature-card__content {
-            opacity: 0;
-        }
-
-        .feature-card__title {
-            font-weight: 800;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-card__description {
-            color: #444;
-            font-size: 1rem;
-        }
-
-        .feature-card__video-wrapper {
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            background: #1a1a1a;
-            padding: 0;
-        }
-
-        .feature-card:hover .feature-card__video-wrapper {
-            opacity: 1;
-        }
-
-        .feature-card__video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .feature-card__video-placeholder {
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-        }
-
-        /* === FOOTER STYLES === */
-        .footer {
-            padding: 2rem 5%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer__content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
-            background: var(--complementary-gradient);
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer__title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .footer__socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-link {
-            color: var(--text-color-dark);
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: var(--text-color);
-            transform: scale(1.2);
-        }
-
-        .social-link svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .footer__details a {
-            color: var(--text-color-dark);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer__details a:hover {
-            color: var(--text-color);
-        }
-
-        .footer__glow-orb {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: var(--glow-color);
-            border-radius: 50%;
-            filter: blur(100px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: footer-orb-pulse 8s infinite ease-in-out;
-        }
-
-        @keyframes footer-orb-pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-            50% { transform: translate(-55%, -45%) scale(1.2); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-        }
-
-        /* === RESPONSIVE DESIGN === */
-        @media (max-width: 1200px) {
-            .feature-sections-wrapper {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .hero__content-box {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-                gap: 2rem;
-            }
-            .hero__name {
-                font-size: 3rem;
-            }
-            .hero__slider-nav {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            .hero__name {
-                font-size: 2.5rem;
-            }
-            .hero__title {
-                font-size: 1.2rem;
-            }
-            .hero__photo-wrapper {
-                width: 150px;
-                height: 150px;
-            }
-            .feature-card__title {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srijan Jha | Creative Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
+  <canvas id="bg-canvas"></canvas>
 
-    <!-- === VIDEO BACKGROUND === -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline id="bg-video">
-            <source src="/video.mov" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#more-than-tech">Life</a></li>
+      <li><a href="#publications">Writing</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <div class="bento-grid">
+      <article class="tile tile--profile">
+        <div class="tile__content">
+          <div class="profile-header">
+            <img src="/src/assets/images/profile.jpeg" alt="Srijan Jha" class="profile-img">
+            <div class="profile-text">
+              <h1>Srijan Jha</h1>
+              <p class="tagline">Creative Technologies & Strategy</p>
+            </div>
+          </div>
+          <p class="bio">
+            I bridge the gap between complex systems and human experiences.
+            Passionate about <strong>Generative AI</strong>, <strong>Cybersecurity</strong>, and <strong>Interactive
+              Design</strong>.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/srijanjha05" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/srijan-jha-4bba561a8/" target="_blank">LinkedIn</a>
+            <a href="mailto:srijanjha2005@gmail.com">Email</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile--stack" data-tilt>
+        <div class="tile__content">
+          <h3>Toolbox</h3>
+          <div class="stack-marquee">
+            <div class="stack-track">
+              <span>Python</span><span>C++</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Flask</span><span>Git</span><span>Figma</span>
+              <span>Python</span><span>C++</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Flask</span><span>Git</span><span>Figma</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile--info" data-tilt>
+        <div class="tile__content">
+          <h3>At a Glance</h3>
+          <ul class="info-list">
+            <li>⚽ Chelsea FC</li>
+            <li>📚 Policy Research</li>
+            <li>🌍 Innovation</li>
+            <li>🎭 Theatre</li>
+          </ul>
+        </div>
+      </article>
     </div>
+  </section>
 
-    <!-- === HEADER === -->
-    <header class="header">
-        <a href="/index.html" class="header__logo">Srijan Jha</a>
-        <nav class="header__nav">
-            <a href="/projects.html">Projects</a>
-            <a href="/more-than-tech.html">More than Tech</a>
-            <a href="/publications.html">Publications</a>
-        </nav>
-    </header>
+  <section id="projects">
+    <h2 class="section-title">Selected Works</h2>
+    <div class="bento-grid bento-grid--projects">
 
-    <!-- === MAIN CONTENT === -->
-    <main class="main-content">
-
-        <!-- === HERO SECTION === -->
-        <section class="hero">
-            <div class="hero__wrapper">
-                <div class="hero__content-box">
-                    <div class="hero__photo-wrapper">
-                        <img 
-                            src="/img.jpeg" 
-                            alt="A professional headshot of Srijan Jha" 
-                            class="hero__photo"
-                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/1a1a1a/ffffff?text=Image\nNot\nFound';"
-                        >
-                    </div>
-                    <div class="hero__text-content">
-                        <h1 class="hero__name">Srijan Jha</h1>
-                        <div class="hero__slider-container">
-                            <div class="hero__slider-track">
-                                <div class="hero__slide">
-                                    <p class="hero__title">Creative Developer & Tech Enthusiast</p>
-                                    <p class="hero__bio">I build beautiful, modern, and responsive web experiences with a focus on performance and user-centric design. Let's create something amazing together.</p>
-                                </div>
-                                <div class="hero__slide">
-                                    <p class="hero__bio">From Generative AI to Cybersecurity, I thrive on diving deep into emerging technologies and building solutions that merge creativity with impact. Whether it’s AI-driven travel planners, database systems, or innovative web apps, I bring ideas to life with precision and flair.</p>
-                                </div>
-                                <div class="hero__slide">
-                                    <p class="hero__bio">A proud Chelsea fan, I bring the same passion for strategy and persistence to my work as I do to football debates. Beyond tech, I explore policy research and its intersection with innovation, aiming to create solutions that make a real-world difference.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hero__slider-nav">
-                            <button class="slider-arrow" id="prev-slide" aria-label="Previous slide">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                            </button>
-                            <button class="slider-arrow" id="next-slide" aria-label="Next slide">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- === FEATURE SECTIONS === -->
-        <div class="feature-sections-wrapper">
-            <!-- Projects Section -->
-            <a href="/projects.html" class="feature-card" data-aos="fade-up">
-                <div class="feature-card__content">
-                    <h2 class="feature-card__title">Projects</h2>
-                    <p class="feature-card__description">View my technical work and case studies.</p>
-                </div>
-                <div class="feature-card__video-wrapper">
-                    <video src="/project.mp4" muted loop playsinline class="feature-card__video"></video>
-                </div>
-            </a>
-
-            <!-- More than Tech Section -->
-            <a href="/more-than-tech.html" class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-card__content">
-                    <h2 class="feature-card__title">More than Tech</h2>
-                    <p class="feature-card__description">Explore my creative pursuits and hobbies.</p>
-                </div>
-                <div class="feature-card__video-wrapper">
-                    <video src="/non_tech.mp4" muted loop playsinline class="feature-card__video"></video>
-                </div>
-            </a>
-
-            <!-- Publications Section -->
-            <a href="/publications.html" class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-card__content">
-                    <h2 class="feature-card__title">Publications</h2>
-                    <p class="feature-card__description">Read my articles and published work.</p>
-                </div>
-                <div class="feature-card__video-wrapper">
-                     <video src="/pub.mp4" muted loop playsinline class="feature-card__video"></video>
-                </div>
-            </a>
+      <!-- Project 1: KERNEL -->
+      <a href="https://github.com/srijanjha05" target="_blank" class="tile tile--project" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/kernel.jpg')"></div>
+        <div class="tile__content">
+          <span class="project-tag">Systems Engineering</span>
+          <h3>KERNEL_MACOS</h3>
+          <p>Advanced process visualization tool written in C. Spawns multi-level hierarchies and maps memory usage.</p>
         </div>
+      </a>
 
-    </main>
-
-    <!-- === FOOTER === -->
-    <footer class="footer" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-        <div class="footer__content">
-            <h3 class="footer__title">Contact Me</h3>
-            <div class="footer__socials">
-                <a href="mailto:srijanjha2005@gmail.com" class="social-link" aria-label="Email">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/srijan-jha-4bba561a8/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-                <a href="https://github.com/srijanjha05" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5.14 0-9-4.12-9-9.21C0 4.12 3.86 0 9 0s9 4.12 9 9.21c0 5.09-3.86 9.21-9 9.21zM9.25 2.32c-3.84 0-6.95 3.11-6.95 6.95 0 3.06 1.99 5.66 4.73 6.58.34.06.47-.15.47-.33v-1.16c-1.93.42-2.34-1.1-2.34-1.1-.31-.79-.76-1-1.03-1.21-.22-.15.02-.15.02-.15.58.04 1.04.59 1.04.59.52.88 1.36.62 1.69.47.05-.37.2-.62.36-.76-1.29-.15-2.65-.65-2.65-2.87 0-.63.22-1.15.59-1.55-.06-.15-.26-.73.06-1.53 0 0 .49-.16 1.6 1.2.46-.13.96-.19 1.46-.19.5 0 1 .06 1.46.19 1.11-1.36 1.6-1.2 1.6-1.2.32.8.12 1.38.06 1.53.37.4.59.92.59 1.55 0 2.23-1.36 2.72-2.65 2.87.21.18.39.53.39 1.07v1.58c0 .18.13.39.47.33 2.74-.92 4.73-3.52 4.73-6.58 0-3.84-3.11-6.95-6.95-6.95z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/srijanjha05/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-            </div>
-            <p class="footer__details">
-                <a href="tel:+917899873024">+91 7899873024</a>
-            </p>
-            <div class="footer__glow-orb"></div>
+      <!-- Project 2: Farmly -->
+      <a href="https://github.com/Vaibhav2824/farmly" target="_blank" class="tile tile--project" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/farmly.jpg')"></div>
+        <div class="tile__content">
+          <span class="project-tag">Full Stack</span>
+          <h3>Farmly</h3>
+          <p>MERN Stack e-commerce platform connecting farmers directly to consumers.</p>
         </div>
-    </footer>
+      </a>
 
+      <!-- Project 3: NextGen AI -->
+      <a href="https://github.com/srijanjha05" target="_blank" class="tile tile--project" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/voice.jpg')"></div>
+        <div class="tile__content">
+          <span class="project-tag">Generative AI</span>
+          <h3>NextGen AI</h3>
+          <p>Voice-enabled chatbot with personality, built using OpenAI Whisper and ElevenLabs.</p>
+        </div>
+      </a>
 
-    <!-- === SCRIPT LIBRARIES === -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100,
-        });
+    </div>
+  </section>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- HERO SLIDER LOGIC ---
-            const track = document.querySelector('.hero__slider-track');
-            const slides = Array.from(track.children);
-            const nextButton = document.getElementById('next-slide');
-            const prevButton = document.getElementById('prev-slide');
-            
-            let currentIndex = 0;
+  <section id="more-than-tech">
+    <h2 class="section-title">Beyond Code</h2>
+    <div class="bento-grid">
 
-            const updateSlidePosition = () => {
-                if (slides.length === 0) return;
-                const slideWidth = slides[0].getBoundingClientRect().width;
-                gsap.to(track, {
-                    duration: 0.5,
-                    x: -currentIndex * slideWidth,
-                    ease: 'power2.inOut'
-                });
-            };
+      <!-- MUN: Globe Icon -->
+      <article class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/mun.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Globe SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>Model United Nations</h3>
+          <p>Outstanding Delegate at Harvard MUN India. Finance Lead managing budgets for a 500+ delegate national
+            conference.</p>
+        </div>
+      </article>
 
-            nextButton.addEventListener('click', () => {
-                currentIndex++;
-                if (currentIndex > slides.length - 1) {
-                    currentIndex = 0;
-                }
-                updateSlidePosition();
-            });
+      <!-- Theatre: Masks Icon -->
+      <article class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/act.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Masks SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path
+              d="M19 12C15.134 12 12 15.134 12 19C12 20.6569 10.6569 22 9 22C7.34315 22 6 20.6569 6 19C6 14.5817 9.58172 11 14 11C18.4183 11 22 7.41828 22 3C22 2.44772 21.5523 2 21 2H3C2.44772 2 2 2.44772 2 3C2 7.41828 5.58172 11 10 11C11.6569 11 13 12.3431 13 14C13 17.866 16.134 21 20 21C21.1046 21 22 20.1046 22 19C22 15.134 20.6667 12 19 12Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="7.5" cy="6.5" r="1.5" fill="currentColor" />
+            <circle cx="16.5" cy="6.5" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>National School of Drama</h3>
+          <p>Assistant Director for "The Lion, The Witch, and The Wardrobe". Trained in stagecraft and expression.</p>
+        </div>
+      </article>
 
-            prevButton.addEventListener('click', () => {
-                currentIndex--;
-                if (currentIndex < 0) {
-                    currentIndex = slides.length - 1;
-                }
-                updateSlidePosition();
-            });
+      <!-- TeleMedi: Medical Icon -->
+      <article class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/doc.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Heart Pulse SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>TeleMedi Initiative</h3>
+          <p>Co-founded a lockdown initiative connecting 100+ hospitals to facilitate telemedicine during the pandemic.
+          </p>
+        </div>
+      </article>
 
-            window.addEventListener('resize', updateSlidePosition);
+      <!-- Policy: Leaf Icon -->
+      <article class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/plant.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Leaf SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path d="M3 13C6.6 5 13.9 3 20.2 3.8C20.7 10.1 18.7 17.4 10.7 21C11 17 10.4 12.6 6.9 9.1"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 21C3 21 8.7 16.8 11.7 11.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>C.H.A.N.G.E. Policy</h3>
+          <p>Designed a comprehensive sustainable development policy framework for Sanskriti School.</p>
+        </div>
+      </article>
 
-            // --- VIDEO PLAY ON HOVER ---
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                const video = card.querySelector('.feature-card__video');
-                if (video) {
-                    card.addEventListener('mouseenter', () => {
-                        try {
-                            video.play();
-                        } catch (error) {
-                            console.error("Video play failed:", error);
-                        }
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        video.pause();
-                    });
-                }
-            });
-        });
-    </script>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2 class="section-title">Publications</h2>
+    <div class="bento-grid">
+
+      <!-- Pub 1: Brain/Chip -->
+      <a href="https://www.orfonline.org/expert-speak/india-s-gen-ai-imperative-the-case-for-building-indigenous-ecosystems"
+        target="_blank" class="tile tile--media tile--featured tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/tech.jpeg');"></div>
+        <div class="tile__icon">
+          <!-- CPU/AI SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" />
+            <path d="M9 9H15V15H9V9Z" fill="currentColor" fill-opacity="0.2" stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 2V4" stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 20V22" stroke="currentColor" stroke-width="1.5" />
+            <path d="M22 12H20" stroke="currentColor" stroke-width="1.5" />
+            <path d="M4 12H2" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>India’s Gen-AI Imperative</h3>
+          <p>Observer Research Foundation • An analysis on why India must build its own indigenous AI ecosystem.</p>
+        </div>
+      </a>
+
+      <!-- Pub 2: India Map/Globe -->
+      <a href="https://www.orfonline.org/research/ai-for-india-identifying-future-directions" target="_blank"
+        class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/india.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Map Pin/Location SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path
+              d="M12 21C15.5 17.4853 19 14.1786 19 9.5C19 5.63401 15.866 2.5 12 2.5C8.13401 2.5 5 5.63401 5 9.5C5 14.1786 8.5 17.4853 12 21Z"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="12" cy="9.5" r="2.5" fill="currentColor" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>AI for India</h3>
+          <p>ORF Research Paper • Identifying future directions for a sovereign AI ecosystem.</p>
+        </div>
+      </a>
+
+      <!-- Pub 3: Law/Scale -->
+      <a href="https://www.orfonline.org/expert-speak/exploring-the-role-of-ai-in-law-enforcement" target="_blank"
+        class="tile tile--media tile--reveal" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/law.jpg');"></div>
+        <div class="tile__icon">
+          <!-- Scale SVG -->
+          <svg viewBox="0 0 24 24" fill="none" class="icon-svg">
+            <path d="M12 3V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M6 7L18 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M3 16C3 16 4.5 13 6 13C7.5 13 9 16 9 16" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 16C15 16 16.5 13 18 13C19.5 13 21 16 21 16" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="tile__content reveal-content">
+          <h3>AI in Law Enforcement</h3>
+          <p>ORF Expert Speak • Exploring predictive policing and the need for ethical governance.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>

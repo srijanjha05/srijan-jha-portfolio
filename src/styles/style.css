@@ -1,0 +1,580 @@
+:root {
+  --bg-color: #050505;
+
+  /* Richer Tile Backgrounds */
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 215, 0, 0.15);
+  --card-rad: 28px;
+
+  --text-main: #ffffff;
+  --text-muted: #b0b0b0;
+  --accent-gold: #ffd700;
+
+  --gap: 24px;
+  --nav-height: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: var(--font-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* === NAVBAR === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(5, 5, 5, 0.4);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-links a:hover {
+  color: var(--accent-gold);
+}
+
+/* === SECTIONS === */
+section {
+  width: 100%;
+  max-width: 1400px;
+  padding: 120px 40px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  color: #fff;
+  letter-spacing: -2px;
+}
+
+/* === BACKGROUND CANVAS === */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* === BENTO GRID LAYOUT === */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  width: 100%;
+}
+
+/* === TILE BASE === */
+.tile {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-rad);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.tile:hover {
+  border-color: rgba(255, 215, 0, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tile__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === PROFILE TILE (DOMINATING) === */
+.tile--profile {
+  grid-column: span 4;
+  min-height: 70vh;
+  /* Increased for deeper domination */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0) 60%), var(--card-bg);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 100px -20px rgba(255, 215, 0, 0.1);
+}
+
+.tile--profile .profile-header {
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.profile-img {
+  width: 240px;
+  /* Increased from 180px */
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid var(--accent-gold);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+  transition: transform 0.5s;
+}
+
+.tile--profile:hover .profile-img {
+  transform: scale(1.05);
+  box-shadow: 0 0 70px rgba(255, 215, 0, 0.5);
+}
+
+.profile-text h1 {
+  font-size: 6rem;
+  /* Bigger */
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 12px;
+  background: linear-gradient(to bottom, #fff, #999);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -4px;
+}
+
+.tagline {
+  color: var(--accent-gold);
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.bio {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.social-links {
+  margin-top: 50px;
+  gap: 24px;
+  justify-content: center;
+}
+
+.social-links a {
+  padding: 14px 36px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 50px;
+  color: var(--accent-gold);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-links a:hover {
+  background: var(--accent-gold);
+  color: #000;
+  box-shadow: 0 0 30px var(--accent-gold);
+}
+
+
+/* === STACK & INFO (Below Profile) === */
+.tile--stack {
+  grid-column: span 2;
+  border-color: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  /* Ensure content stays inside */
+}
+
+/* Ensure Stack Marquee Works */
+.tile--stack .tile__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  /* Critical for marquee */
+}
+
+.tile--stack h3 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.stack-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.stack-track {
+  display: flex;
+  gap: 30px;
+  /* More gap */
+  width: max-content;
+  /* Ensure track spans full width of content */
+  animation: scroll 15s linear infinite;
+  /* Faster scroll */
+}
+
+.stack-track span {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* === INFO TILE === */
+.tile--info {
+  grid-column: span 2;
+  border-color: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(to bottom right, #111, #050505);
+}
+
+.info-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.info-list li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* === PROJECTS (FEATURED vs REGULAR) === */
+.tile--project {
+  min-height: 350px;
+}
+
+/* Feature the top 2 projects */
+.tile--featured {
+  grid-column: span 2;
+  min-height: 450px;
+}
+
+.tile--project .tile__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.5;
+  /* Increased opacity for better placeholder visibility */
+  filter: grayscale(20%);
+  transition: all 0.5s;
+}
+
+/* Richer gradient overlay */
+.tile--project::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  z-index: 1;
+}
+
+.tile--project:hover .tile__bg {
+  opacity: 0.4;
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.tile--project .tile__content {
+  z-index: 3;
+  justify-content: flex-end;
+}
+
+.tile--project h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.tile--project p {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+
+/* === MEDIA TILES (Beyond Tech & Pubs) === */
+.tile--media {
+  grid-column: span 2;
+  min-height: 300px;
+  border: none;
+  background: #000;
+  /* Fallback */
+}
+
+.tile--media .tile__bg {
+  opacity: 0.6;
+}
+
+.tile--media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.tile--media .tile__content {
+  z-index: 2;
+  justify-content: center;
+  max-width: 60%;
+}
+
+.tile--media h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--accent-gold);
+}
+
+.tile--media p {
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile--profile {
+    grid-column: span 2;
+  }
+
+  .tile--stack {
+    grid-column: span 2;
+  }
+
+  .tile--info {
+    grid-column: span 2;
+  }
+
+  .tile--featured {
+    grid-column: span 2;
+  }
+
+  .tile--media {
+    grid-column: span 2;
+  }
+
+  .tile--profile {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+
+  .profile-text h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .profile-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tile {
+    min-height: 250px;
+  }
+
+  .tile--media::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  }
+
+  .tile--media .tile__content {
+    max-width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* === 3-COLUMN PROJECT GRID (Equal Visibility) === */
+.bento-grid--projects {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bento-grid--projects .tile {
+  grid-column: span 1;
+  /* override any span-2 */
+  min-height: 500px;
+  /* Taller for impact */
+}
+
+/* Make sure the backgrounds are rich for all of them */
+.bento-grid--projects .tile__bg {
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid--projects {
+    grid-template-columns: 1fr;
+    /* Stack vertically on smaller screens */
+  }
+}
+
+/* === REVEAL CARDS (Media & Publications) === */
+
+/* Override default Media Tile styles for interactions */
+.tile--reveal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Background always dim to let Icon pop */
+.tile--reveal .tile__bg {
+  opacity: 0.3;
+  transition: all 0.5s ease;
+  filter: grayscale(100%) brightness(0.6);
+}
+
+.tile--reveal:hover .tile__bg {
+  opacity: 0.4;
+  filter: grayscale(0%) brightness(0.8);
+  transform: scale(1.05);
+}
+
+/* === THE ICON (Visible by default) === */
+.tile__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  color: var(--accent-gold);
+  z-index: 5;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+}
+
+.icon-svg {
+  width: 100%;
+  height: 100%;
+  drop-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+/* === THE CONTENT (Hidden by default) === */
+.reveal-content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.4s ease-out;
+  z-index: 6;
+  max-width: 80% !important;
+  /* Override media tile limit */
+}
+
+/* === HOVER STATES === */
+.tile--reveal:hover .tile__icon {
+  opacity: 0;
+  transform: translate(-50%, -80px) scale(0.5);
+  /* Fly up and shrink */
+}
+
+.tile--reveal:hover .reveal-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Adjust text for alignment */
+.tile--reveal h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tile--reveal p {
+  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
