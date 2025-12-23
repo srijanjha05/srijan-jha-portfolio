@@ -577,4 +577,66 @@ section {
   font-size: 1.1rem;
   line-height: 1.5;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}/* === TOP FEATURED PROJECT (Toxicity) === */
+.tile--featured-top {
+    grid-column: span 3 !important;
+    /* Force full width in the 3-col grid */
+    min-height: 450px;
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+    /* Unique distinct gradient */
+}
+
+.tile--featured-top .tile__content {
+    justify-content: center;
+    align-items: flex-start;
+    /* Left align text */
+    padding: 60px;
+}
+
+.tile--featured-top h3 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    background: linear-gradient(to right, #fff, #a0c4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tile--featured-top p {
+    max-width: 600px;
+    font-size: 1.1rem;
+    color: #d1d5db;
+    margin-bottom: 24px;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: var(--accent-gold);
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+    position: relative;
+    /* Ensure clickable */
+}
+
+.btn-download:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+    .tile--featured-top {
+        grid-column: span 1 !important;
+        /* Back to stack on mobile */
+    }
 }
