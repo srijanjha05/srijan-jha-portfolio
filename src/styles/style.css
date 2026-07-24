@@ -639,4 +639,63 @@ section {
         grid-column: span 1 !important;
         /* Back to stack on mobile */
     }
+
+    .tile--wide {
+        grid-column: span 1;
+    }
+}
+
+/* === CAPSTONE: TEXT REVEALS ON IMAGE HOVER === */
+.tile--text-on-hover .tile__bg {
+    opacity: 0.65;
+    filter: grayscale(10%) brightness(0.9);
+}
+
+.tile--text-on-hover:hover .tile__bg {
+    opacity: 0.35;
+    filter: grayscale(0%) brightness(0.7);
+    transform: scale(1.04);
+}
+
+.tile--text-on-hover .tile__content {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.tile--text-on-hover:hover .tile__content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === EXPERIENCE CARD: WIDE LAYOUT + BULLETED COPY === */
+.tile--wide {
+    grid-column: span 3;
+}
+
+.exp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 780px;
+}
+
+.exp-list li {
+    position: relative;
+    padding-left: 20px;
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.exp-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-gold);
 }

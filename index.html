@@ -73,6 +73,85 @@
     </div>
   </section>
 
+  <section id="research">
+    <h2 class="section-title">Capstone Project</h2>
+    <div class="bento-grid bento-grid--projects">
+
+      <!-- Capstone: BioPathNet++ -->
+      <div class="tile tile--project tile--featured-top tile--text-on-hover" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/cap.png');"></div>
+        <div class="tile__content">
+          <span class="project-tag"
+            style="background: rgba(255, 215, 0, 0.15); color: var(--accent-gold); border-color: var(--accent-gold);">Knowledge
+            Graphs &amp; Transfer Learning · Ongoing</span>
+          <h3>BioPathNet++</h3>
+          <p style="margin-bottom: 16px;">
+            Building BioPathNet++, a drug repurposing predictor for 5 autoimmune diseases using transfer learning
+            across knowledge graphs and Neural Bellman-Ford networks. Integrated multi-source biomedical knowledge
+            graphs with 6M+ drug-target-disease triples, engineering relational message passing across heterogeneous
+            node and edge types. Achieved an initial AUPRC of 0.935, validating the transfer learning approach across
+            disease-specific subgraphs.
+          </p>
+          <p>
+            Currently benchmarking against baseline GNN architectures and validating top-ranked drug candidates
+            against existing biomedical literature. Next steps: extending to additional autoimmune diseases,
+            incorporating clinical trial data, and preparing findings for publication.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="bento-grid bento-grid--projects">
+
+      <!-- Compoundexpress Internship -->
+      <div class="tile tile--project tile--featured-top tile--text-on-hover" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/ce.png');"></div>
+        <div class="tile__content">
+          <span class="project-tag">AI Data &amp; Analytics Intern</span>
+          <h3>Compoundexpress Private Limited</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">New Delhi, India (Remote) ·
+            Jun–Jul 2026</p>
+          <ul class="exp-list">
+            <li>Built an AI-powered CRM module (FastAPI, Next.js, Supabase) with an agentic scanner for
+              compliance-checked client outreach.</li>
+            <li>Built a competitive intelligence pipeline tracking 10 MFD companies with Serper/NewsAPI, RoBERTa
+              sentiment analysis, and Groq LLaMA weekly briefs.</li>
+            <li>Built a natural language query interface over PostgreSQL and AWS Bedrock with schema-aware context
+              selection, eliminating manual SQL.</li>
+            <li>Shipped production AI tooling end-to-end, from data pipeline to user-facing module, collaborating
+              remotely with the Data &amp; Analytics team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ORF Internship -->
+      <div class="tile tile--project tile--featured-top tile--text-on-hover" data-tilt>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/orf.png');"></div>
+        <div class="tile__content">
+          <span class="project-tag">Security, Strategy &amp; Technology Intern</span>
+          <h3>Observer Research Foundation</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">New Delhi, India · Jun–Jul
+            2025</p>
+          <ul class="exp-list">
+            <li>Researched and published on India's Generative AI capabilities, arguing for an indigenous LLM
+              ecosystem to reduce dependency on foreign models.</li>
+            <li>Contributed to a Special Report on India's future AI directions — compute capacity, funding gaps,
+              and policy levers for AI infrastructure growth.</li>
+            <li>Authored analysis on AI ethics in law enforcement, examining predictive policing risks and the need
+              for governance frameworks.</li>
+            <li>Worked at the intersection of technology and public policy, translating technical AI capability into
+              strategic and geopolitical implications for national security.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="projects">
     <h2 class="section-title">Selected Works</h2>
     <div class="bento-grid bento-grid--projects">
@@ -101,13 +180,16 @@
         </div>
       </div>
 
-      <!-- Project 1: KERNEL -->
+      <!-- Project 1: Alzheimer's Detection Pipeline -->
       <a href="https://github.com/srijanjha05" target="_blank" class="tile tile--project" data-tilt>
-        <div class="tile__bg" style="background-image: url('/src/assets/images/kernel.jpg')"></div>
+        <div class="tile__bg" style="background-image: url('/src/assets/images/x.png')"></div>
         <div class="tile__content">
-          <span class="project-tag">Systems Engineering</span>
-          <h3>KERNEL_MACOS</h3>
-          <p>Advanced process visualization tool written in C. Spawns multi-level hierarchies and maps memory usage.</p>
+          <span class="project-tag">Explainable AI</span>
+          <h3>Alzheimer's Detection Pipeline</h3>
+          <p>Explainable AI pipeline for Alzheimer's detection using a 3D DenseNet on OASIS-1 MRI data with severe
+            class imbalance (3.36:1). Achieved 0.948 AUC using focal loss and balanced sampling, with novel
+            interpretability features (hemisphere asymmetry, concentration ratio, LRP-IG agreement) generating
+            per-patient clinical reports.</p>
         </div>
       </a>
 
